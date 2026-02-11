@@ -2,3 +2,38 @@
 .vscode
 kubernetes-learning*
 ssh_public_key
+
+
+
+# Visual Studio / .NET
+bin/
+obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+.vs/
+.vscode/
+
+
+# Docker
+docker-compose.override.yml
+docker-compose.override.yml
+
+# Logs
+*.log
+
+# Secrets
+*.env
+*.pfx
+*.key
+*.pem
+
+# OS
+.DS_Store
+Thumbs.db
+
+
+Backup
+
+appsettings.Development.json
