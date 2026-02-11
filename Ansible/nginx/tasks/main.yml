@@ -1,0 +1,16 @@
+---
+- name: update package cache
+  ansible.builtin.apt:
+    update_cache: yes
+    force_apt_get: yes
+
+- name: install nginx
+  ansible.builtin.apt:
+    name: nginx
+    state: present
+
+- name: start nginx
+  ansible.builtin.service:
+    name: nginx
+    state: started
+    enabled: yes

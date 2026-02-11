@@ -1,0 +1,9 @@
+- name: Initialize the Kubernetes cluster
+  command: kubeadm init 
+  register: kubeadm_init
+
+- name: Save kubeadm init output to a file
+  copy:
+    content: "{{ kubeadm_init.stdout }}"
+    dest: /home/ubuntu/kubeadm_init_output.txt
+  when: kubeadm_init.rc == 0

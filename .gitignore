@@ -1,0 +1,4 @@
+.terraform*
+.vscode
+kubernetes-learning*
+ssh_public_key

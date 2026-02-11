@@ -1,0 +1,14 @@
+- name: Master Nodes
+  hosts: master
+  roles:
+   - docker
+   - kubeadm
+   - nginx
+   - Cluster
+
+- name: Worker Nodes
+  hosts: node
+  roles:
+   - docker
+   - kubeadm
+   - nginx
