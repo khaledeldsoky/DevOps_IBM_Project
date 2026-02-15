@@ -5,8 +5,6 @@ Git, Linux, Docker, Kubernetes, Terraform, Ansible, CI/CD, and automation script
 
 This project is designed to help you **learn by doing** through real-world examples and labs.
 
-
-
 ## 🔍 Overview
 
 This repository provides practical DevOps labs and automation examples inspired by
@@ -40,7 +38,6 @@ Before using this project, make sure you have:
 | Kubernetes | Container orchestration |
 | Terraform | Infrastructure as Code |
 | Ansible | Automation & configuration |
-
 
 
 ## 📁 Repository Structure
@@ -91,7 +88,6 @@ Using modules allows us to create multiple resources using clean and structured 
 
 Inside the `modules/` folder, you will find three main modules:
 
----
 
 ### 🖥️ Compute Module
 
@@ -100,8 +96,6 @@ The **Compute** module is responsible for:
 - Creating virtual machine instances  
 - Managing compute configurations  
 - Provisioning server resources  
-
----
 
 ### 🌐 Network Module
 
@@ -112,8 +106,6 @@ The **Network** module is responsible for:
 - Managing networking components  
 - Handling routing and connectivity  
 
----
-
 ### 🔐 Security Module
 
 The **Security** module is responsible for:
@@ -122,8 +114,6 @@ The **Security** module is responsible for:
 - Creating security groups  
 - Managing firewall rules  
 - Controlling instance access  
-
----
 
 ## 🔑 Important: Create SSH Key Before Running Terraform
 
@@ -140,8 +130,6 @@ ssh_key_path = "/home/user/.ssh/id_rsa.pub"
 
 Terraform will use this key when provisioning compute instances.
 
----
-
 ## 🚀 Running Terraform
 
 To provision your infrastructure, run:
@@ -157,7 +145,7 @@ This command will:
 - ✔ Create compute instances  
 - ✔ Configure security components  
 
----
+
 
 ## 2️⃣ Ansible – Automation & Configuration ⚙️
 
@@ -175,8 +163,6 @@ Ansible will:
 - ✔ Configure the system  
 - ✔ Deploy applications  
 - ✔ Prepare the environment  
-
----
 
 ## 🧠 Infrastructure Workflow
 
