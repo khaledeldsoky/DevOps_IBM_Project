@@ -1,0 +1,41 @@
+# Naming Conventions for Terraform Infrastructure Code
+
+## Overview
+This document defines naming conventions used across the Terraform codebase to ensure consistency, readability, and maintainability.
+
+## File Naming
+- Use lowercase with underscores (snake_case)
+- Remove numbered prefixes (❌ 06-Locals.tf → ✅ locals.tf)
+- Use descriptive names that indicate content
+- Standard files: main.tf, variables.tf, outputs.tf, locals.tf, data.tf
+
+## Security Rule Naming
+Format: `{protocol}_{direction}_{source}_{service}`
+
+Examples:
+- `tcp_inbound_any_ssh` - TCP inbound from anywhere for SSH
+- `udp_outbound_any_weave_net` - UDP outbound for Weave network
+- `tcp_inbound_cidr_postgres` - TCP inbound from specific CIDR for PostgreSQL
+
+## Port Dictionary Keys
+Use descriptive, lowercase names with underscores:
+- ✅ `kube_apiserver` - Kubernetes API Server
+- ✅ `kube_controller_manager` - Controller Manager
+- ✅ `etcd` - etcd Key-Value Store
+- ❌ `k8s_api` - Too abbreviated
+
+## Variables and Locals
+- Use snake_case
+- Be specific: `kubernetes_ports` not `ports`
+- Group related items: `cluster_nodes`, `security_rules_by_group`
+
+## Folder Structure
+```text
+terraform/ 
+├── locals.tf # Central configurVation 
+├── variables.tf # Input definitions 
+├── main.tf # Primary resources 
+├── modules/security/ # Security-specific module 
+├── modules/compute/ # Compute resources module 
+└── environments/prod/ # Environment-specific configs
+```

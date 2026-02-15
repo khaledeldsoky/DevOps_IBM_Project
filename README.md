@@ -27,11 +27,8 @@ Before using this project, make sure you have:
 
 - Linux environment (Ubuntu recommended)
 - Git
-- Docker
-- kubectl
 - Terraform
 - Ansible
-- Helm (optional)
 - Access to a cloud provider 
 
 ## 💻 Tools You’ll Use
@@ -40,12 +37,9 @@ Before using this project, make sure you have:
 |----|----|
 | Git & GitHub | Version control |
 | Linux & Bash | OS & scripting |
-| Docker | Containerization |
 | Kubernetes | Container orchestration |
 | Terraform | Infrastructure as Code |
 | Ansible | Automation & configuration |
-| Helm | Kubernetes package management |
-| CI/CD | Build & deployment automation |
 
 
 
@@ -55,80 +49,143 @@ Before using this project, make sure you have:
 DevOps_IBM-Full/
 ├── Ansible/           # Automation playbooks & configuration
 ├── Terraform/         # Infrastructure as Code modules
-├── Kubernetes/        # K8s manifests and deployments
-├── Docker/            # Dockerfiles & images
 ├── bash/              # Bash automation scripts
-├── helm/              # Helm charts
 └── README.md
 ```
 
 Each folder focuses on **one DevOps concept** and contains scripts or configuration files that you can **run, modify, and experiment with**.
 
+## 🌩️ Using IBM Cloud
 
+If you are using **IBM Cloud**, you must export your API key before running Terraform.
 
-## 2️⃣ Terraform – Infrastructure as Code 🌍
-
-Terraform is used in this project to **create, manage, and version infrastructure automatically** using code instead of manual setup.  
-This approach is known as **Infrastructure as Code (IaC)** and allows you to treat infrastructure the same way you treat application code.
-
-### 🔹 What Terraform models are included in this project
-
-The Terraform configurations in this repository focus on building reusable and scalable infrastructure models, such as:
-
-📌 **Network infrastructure**  
-- Virtual Private Clouds (VPC)  
-- Subnets  
-- Networking components  
-
-📌 **Compute resources**  
-- Virtual machines  
-- Worker nodes  
-- Infrastructure needed to run applications  
-
-📌 **Kubernetes-related infrastructure**  
-- Resources required to support Kubernetes clusters  
-- Infrastructure prepared for container orchestration  
-
-📌 **Reusable Terraform modules**  
-- Modular design for clean and organized code  
-- Easy reuse across multiple environments  
-
-### 🔹 Terraform workflow
+Add your IBM Cloud API key to your `~/.bashrc` file:
 
 ```bash
-cd Terraform
-terraform init
-terraform plan
-terraform apply
+export IBMCLOUD_API_KEY="your_api_key_here"
 ```
 
-## 🔹 What Terraform helps you achieve
+Then reload your shell:
 
-✔ Track infrastructure changes safely  
-✔ Recreate environments quickly  
-✔ Apply consistent configurations  
-✔ Destroy infrastructure when it is no longer needed  
+```bash
+source ~/.bashrc
+```
+
+This allows Terraform to authenticate and provision resources in IBM Cloud.
+
+
+## 1️⃣ Terraform – Infrastructure as Code 🌍
+
+
+## 🧱 Terraform Modules Structure
+
+This project uses **Terraform modules** to make the code:
+
+- ✔ More readable  
+- ✔ Reusable  
+- ✔ Organized  
+- ✔ Scalable  
+- ✔ Easy to maintain  
+
+Using modules allows us to create multiple resources using clean and structured code.
+
+Inside the `modules/` folder, you will find three main modules:
 
 ---
 
-## 3️⃣ Ansible – Automation & Configuration ⚙️
+### 🖥️ Compute Module
 
-Ansible is used to **automate system configuration and application setup** after infrastructure is created.  
-It ensures that servers are configured **consistently and repeatedly** without manual intervention.
+The **Compute** module is responsible for:
 
-### 🔹 What Ansible is used for in this project
+- Creating virtual machine instances  
+- Managing compute configurations  
+- Provisioning server resources  
 
-🔧 Installing required packages and dependencies  
-🔧 Configuring operating system settings  
-🔧 Running automation scripts  
-🔧 Deploying applications  
-🔧 Managing and restarting services  
+---
 
-### 🔹 Running Ansible playbooks
+### 🌐 Network Module
+
+The **Network** module is responsible for:
+
+- Creating the VPC  
+- Creating subnets  
+- Managing networking components  
+- Handling routing and connectivity  
+
+---
+
+### 🔐 Security Module
+
+The **Security** module is responsible for:
+
+- Creating SSH keys  
+- Creating security groups  
+- Managing firewall rules  
+- Controlling instance access  
+
+---
+
+## 🔑 Important: Create SSH Key Before Running Terraform
+
+Before running Terraform:
+
+1. Create your SSH key manually.
+2. Add the SSH key path inside your `terraform.tfvars` file.
+
+Example:
+
+```hcl
+ssh_key_path = "/home/user/.ssh/id_rsa.pub"
+```
+
+Terraform will use this key when provisioning compute instances.
+
+---
+
+## 🚀 Running Terraform
+
+To provision your infrastructure, run:
 
 ```bash
-cd Ansible
-ansible-playbook -i inventory playbook.yml
+terraform apply -var-file=Environments/Prod/terraform.tfvars
 ```
+
+This command will:
+
+- ✔ Load production variables  
+- ✔ Create network resources  
+- ✔ Create compute instances  
+- ✔ Configure security components  
+
+---
+
+## 2️⃣ Ansible – Automation & Configuration ⚙️
+
+## ⚙️ Running Ansible
+
+After Terraform finishes provisioning the infrastructure, configure the servers using Ansible:
+
+```bash
+ansible-playbook main.yaml
+```
+
+Ansible will:
+
+- ✔ Install required packages  
+- ✔ Configure the system  
+- ✔ Deploy applications  
+- ✔ Prepare the environment  
+
+---
+
+## 🧠 Infrastructure Workflow
+
+The recommended workflow:
+
+1. Export IBM Cloud API key  
+2. Create SSH key  
+3. Configure `terraform.tfvars`  
+4. Run Terraform  
+5. Run Ansible  
 
 ✨ Happy Learning & Automating! ✨

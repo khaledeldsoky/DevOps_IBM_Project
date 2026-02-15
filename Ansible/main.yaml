@@ -1,14 +1,11 @@
 - name: Master Nodes
   hosts: master
   roles:
-   - docker
-   - kubeadm
-   - nginx
-   - Cluster
+    - kubeadm
+    - master-config
 
 - name: Worker Nodes
-  hosts: node
+  hosts: worker
   roles:
-   - docker
-   - kubeadm
-   - nginx
+    - kubeadm
+    - join

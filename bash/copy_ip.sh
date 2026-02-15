@@ -1,21 +1,21 @@
 cat << EOF > ~/.ssh/config
-Host bastion
+Host $4
     HostName $1
     User ubuntu
-    IdentityFile /home/khaled/khaled-eldsoky/DevOps_IBM/Terraform/ssh_public_key/master
+    IdentityFile ~/.ssh/master
     StrictHostKeyChecking no
 
-Host privateinstance1
+Host $5
     HostName $2
     User ubuntu
-    IdentityFile /home/khaled/khaled-eldsoky/DevOps_IBM/Terraform/ssh_public_key/node
-    ProxyCommand ssh -q -W %h:%p bastion
+    IdentityFile ~/.ssh/worker
+    ProxyCommand ssh -q -W %h:%p $4
     StrictHostKeyChecking no
 
-Host privateinstance2
+Host $6
     HostName $3
     User ubuntu
-    IdentityFile /home/khaled/khaled-eldsoky/DevOps_IBM/Terraform/ssh_public_key/node
-    ProxyCommand ssh -q -W %h:%p bastion
+    IdentityFile ~/.ssh/worker
+    ProxyCommand ssh -q -W %h:%p $4
     StrictHostKeyChecking no
 EOF

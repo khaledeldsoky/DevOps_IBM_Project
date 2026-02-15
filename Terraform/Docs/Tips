@@ -1,0 +1,6 @@
+# To know the output from the module
+terraform console
+> module.compute
+
+or use
+terraform state list

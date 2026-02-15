@@ -1,2 +1,5 @@
-[local]
-localhost ansible_connection=local
+[master]
+instance-master
+[worker]
+instance-private-1
+instance-private-2
